@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class UsersController extends Controller
 {
@@ -61,6 +62,8 @@ class UsersController extends Controller
         ->select('users.id', 'users.name', 'users.email', 'users.menuroles as roles', 'users.status')
         ->where('users.id', '=', $id)
         ->first();
+        Log::info('Edit User Info:'.response()->json( $user ));
+        Log::info(print_r($user, true));
         return response()->json( $user );
     }
 
